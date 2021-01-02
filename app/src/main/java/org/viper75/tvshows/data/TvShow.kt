@@ -1,7 +1,10 @@
-package org.viper75.tvshows.models
+package org.viper75.tvshows.data
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class TvShow(
     private val id: Int,
     private val name: String,
@@ -14,4 +17,4 @@ data class TvShow(
     private val startDate: String,
     @SerializedName("end_date")
     private val endDate: String,
-)
+): Parcelable
