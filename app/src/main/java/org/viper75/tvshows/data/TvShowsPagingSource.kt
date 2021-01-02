@@ -1,9 +1,7 @@
 package org.viper75.tvshows.data
 
 import androidx.paging.PagingSource
-import org.viper75.tvshows.api.EpisodateApiResponse
 import org.viper75.tvshows.api.EpisodateApiService
-import org.viper75.tvshows.repository.TvShowRepository
 import retrofit2.HttpException
 import java.io.IOException
 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mostPopularShowsFragment">
+
+    <fragment
+        android:id="@+id/mostPopularShowsFragment"
+        android:name="org.viper75.tvshows.ui.MostPopularShowsFragment"
+        android:label="tv_shows"
+        tools:layout="@layout/tv_shows" />
+</navigation>
