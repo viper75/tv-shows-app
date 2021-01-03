@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.error_message_layout.view.*
@@ -69,7 +70,8 @@ class MostPopularShowsFragment : Fragment(R.layout.tv_shows), TvShowAdapter.OnIt
     }
 
     override fun onItemClick(tvShow: TvShow) {
-
+        val option = MostPopularShowsFragmentDirections.actionMostPopularShowsFragmentToShowDetailsFragment(tvShow)
+        findNavController().navigate(option)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

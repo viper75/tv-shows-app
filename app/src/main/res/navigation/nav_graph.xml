@@ -8,6 +8,19 @@
     <fragment
         android:id="@+id/mostPopularShowsFragment"
         android:name="org.viper75.tvshows.ui.MostPopularShowsFragment"
-        android:label="tv_shows"
-        tools:layout="@layout/tv_shows" />
+        android:label="Tv Show | Most Popular"
+        tools:layout="@layout/tv_shows">
+        <action
+            android:id="@+id/action_mostPopularShowsFragment_to_showDetailsFragment"
+            app:destination="@id/showDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showDetailsFragment"
+        android:name="org.viper75.tvshows.ui.ShowDetailsFragment"
+        android:label="Tv Show Details"
+        tools:layout="@layout/tv_show_details">
+        <argument
+            android:name="tvShow"
+            app:argType="org.viper75.tvshows.data.TvShow" />
+    </fragment>
 </navigation>
