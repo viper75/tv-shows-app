@@ -1,5 +1,6 @@
 package org.viper75.tvshows.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -10,6 +11,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import org.viper75.tvshows.R
 import org.viper75.tvshows.data.TvShow
 import org.viper75.tvshows.databinding.TvShowItemBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TvShowAdapter(private val listener: OnItemClickListener) : PagingDataAdapter<TvShow, TvShowAdapter.TvShowItemViewHolder>(
     TV_SHOW_COMPARATOR) {
@@ -41,6 +44,7 @@ class TvShowAdapter(private val listener: OnItemClickListener) : PagingDataAdapt
             }
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind(tvShow: TvShow) {
             binding.apply {
                 Glide.with(itemView)
@@ -50,9 +54,11 @@ class TvShowAdapter(private val listener: OnItemClickListener) : PagingDataAdapt
                     .error(R.drawable.ic_error)
                     .into(posterImageView)
 
+                val networkDate = NETWORK_DATE_FORMAT.parse(tvShow.startDate)!!
+
                 nameTextView.text = tvShow.name
-                networkTextView.text = tvShow.network
-                startDateTextView.text = "Started on ${tvShow.startDate}"
+                networkTextView.text = "${tvShow.network} (${tvShow.country})"
+                startDateTextView.text = "Started on ${DISPLAY_DATE_FORMAT.format(networkDate)}"
                 statusTextView.text = tvShow.status
             }
         }
@@ -71,5 +77,10 @@ class TvShowAdapter(private val listener: OnItemClickListener) : PagingDataAdapt
                 oldItem == newItem
 
         }
+
+        @SuppressLint("SimpleDateFormat")
+        val DISPLAY_DATE_FORMAT = SimpleDateFormat("dd MMM yyyy")
+        @SuppressLint("SimpleDateFormat")
+        val NETWORK_DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd")
     }
 }
