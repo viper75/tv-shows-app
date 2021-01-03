@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import org.viper75.tvshows.R
 import org.viper75.tvshows.data.TvShow
 import org.viper75.tvshows.databinding.TvShowItemBinding
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -54,11 +55,17 @@ class TvShowAdapter(private val listener: OnItemClickListener) : PagingDataAdapt
                     .error(R.drawable.ic_error)
                     .into(posterImageView)
 
-                val networkDate = NETWORK_DATE_FORMAT.parse(tvShow.startDate)!!
+                val networkDate = try {
+                    tvShow.startDate?.let {
+                        NETWORK_DATE_FORMAT.parse(it)
+                    }
+                } catch (pe: ParseException) {
+                    null
+                }
 
                 nameTextView.text = tvShow.name
                 networkTextView.text = "${tvShow.network} (${tvShow.country})"
-                startDateTextView.text = "Started on ${DISPLAY_DATE_FORMAT.format(networkDate)}"
+                startDateTextView.text = "Started on ${networkDate?.let { DISPLAY_DATE_FORMAT.format(it) }}"
                 statusTextView.text = tvShow.status
             }
         }

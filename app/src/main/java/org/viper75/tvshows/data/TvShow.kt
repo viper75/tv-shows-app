@@ -14,7 +14,7 @@ data class TvShow(
     @SerializedName("image_thumbnail_path")
     val image: String,
     @SerializedName("start_date")
-    val startDate: String,
+    val startDate: String?,
     @SerializedName("end_date")
     val endDate: String,
 ): Parcelable
